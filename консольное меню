@@ -1,0 +1,85 @@
+using System;
+
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+        int changeTextColor;
+        int userInput;
+        string password;
+        string setName = "";
+        string setPassword = "";
+        bool esc = true;
+
+        while (esc)
+        {
+            Console.WriteLine("Добро пожаловать в меню!");
+            Console.WriteLine("Выберите необходимую операцию: ");
+            Console.WriteLine("1 - Установить имя.");
+            Console.WriteLine("2 - Выбрать цвет текста.");
+            Console.WriteLine("3 - Установить пароль.");
+            Console.WriteLine("4 - Вывести имя.");
+            Console.WriteLine("5 - Выход.");
+            userInput = Convert.ToInt32(Console.ReadLine());
+
+            switch (userInput)
+            {
+                case 1:
+                    Console.Write("Установите имя:");
+                    setName = Console.ReadLine();
+                    Console.Clear();
+                    break;
+
+                case 2:
+                    Console.WriteLine("Выберите цвет текста: ");
+                    Console.WriteLine("1 - Синий.");
+                    Console.WriteLine("2 - Красный.");
+                    Console.WriteLine("3 - Серый.");
+                    changeTextColor = Convert.ToInt32(Console.ReadLine());
+
+                    if (changeTextColor == 1)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Clear();
+                    }
+                    else if (changeTextColor == 2)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Clear();
+                    }
+                    else if (changeTextColor == 3)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                        Console.Clear();
+                    }
+                    break;
+
+                case 3:
+                    Console.Write("Установите пароль: ");
+                    setPassword = Console.ReadLine();
+                    Console.Clear();
+                    break;
+
+                case 4:
+                    Console.WriteLine("Введите пароль: ");
+                    password = Console.ReadLine();
+
+                    if (password == setPassword)
+                    {
+                        Console.WriteLine("Имя пользователя: " + setName);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Пароль не верный!");
+                    }
+                    break;
+
+                case 5:
+                    Console.WriteLine("Вы вышли из меню.");
+                    esc = false;
+                    break;  
+            }
+        }
+        Console.ReadKey();
+    }
+}   
