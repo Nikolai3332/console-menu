@@ -1,85 +1,138 @@
-using System;
-
 internal class Program
 {
     private static void Main(string[] args)
     {
-        int changeTextColor;
-        int userInput;
+        const string CommandSetName = "1";
+        const string CommandSetColorText = "2";
+        const string CommandSetPassword = "3";
+        const string CommandDisplayName = "4";
+        const string CommandChangeTextBackground = "5";
+        const string CommandExit = "6";
+
+        int commandSetColorTextRed = 1;
+        int commandSetColorTextYellow = 2;
+        int commandSetColorTextGreen = 3;
+
+        int commandSetColorTextBackgroundRed = 1;
+        int commandSetColorTextBackgroundYellow = 2;
+        int commandSetColorTextBackgroundGreen = 3;
+
+        string userInput = "";
+        int setColorText;
+        int setColorBackgroundText;
+        int triesCount = 3;
+
         string password;
         string setName = "";
         string setPassword = "";
-        bool esc = true;
 
-        while (esc)
+        Console.WriteLine("Добро пожаловать в меню!\nВыберите нужную команду: ");
+
+        while (userInput != CommandExit)
         {
-            Console.WriteLine("Добро пожаловать в меню!");
-            Console.WriteLine("Выберите необходимую операцию: ");
-            Console.WriteLine("1 - Установить имя.");
-            Console.WriteLine("2 - Выбрать цвет текста.");
-            Console.WriteLine("3 - Установить пароль.");
-            Console.WriteLine("4 - Вывести имя.");
-            Console.WriteLine("5 - Выход.");
-            userInput = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"{CommandSetName} - Установить имя;");
+            Console.WriteLine($"{CommandSetColorText} - Выбрать цвет текста;");
+            Console.WriteLine($"{CommandSetPassword} - Установить пароль;");
+            Console.WriteLine($"{CommandDisplayName} - Изменить имя;");
+            Console.WriteLine($"{CommandChangeTextBackground} - Изменить фон текста;");
+            Console.WriteLine($"{CommandExit} - Выход.");
+            userInput = Console.ReadLine();
 
             switch (userInput)
             {
-                case 1:
-                    Console.Write("Установите имя:");
+                case CommandSetName:
+
+                    Console.Write("Установите имя: ");
                     setName = Console.ReadLine();
-                    Console.Clear();
                     break;
 
-                case 2:
-                    Console.WriteLine("Выберите цвет текста: ");
-                    Console.WriteLine("1 - Синий.");
-                    Console.WriteLine("2 - Красный.");
-                    Console.WriteLine("3 - Серый.");
-                    changeTextColor = Convert.ToInt32(Console.ReadLine());
+                case CommandSetColorText:
 
-                    if (changeTextColor == 1)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue;
-                        Console.Clear();
-                    }
-                    else if (changeTextColor == 2)
+                    Console.WriteLine("Выберите цвет текста: ");
+                    Console.WriteLine($"{commandSetColorTextRed} - Установить красный цвет текста;");
+                    Console.WriteLine($"{commandSetColorTextYellow} - Установить желтый цвет текста;");
+                    Console.WriteLine($"{commandSetColorTextGreen} - Установить зеленый цвет текста.");
+                    setColorText = Convert.ToInt32(Console.ReadLine());
+
+                    if (setColorText == 1)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.Clear();
+                        
                     }
-                    else if (changeTextColor == 3)
+                    else if (setColorText == 2)
                     {
-                        Console.ForegroundColor = ConsoleColor.Gray;
-                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        
+                    }
+                    else if (setColorText == 3)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        
                     }
                     break;
 
-                case 3:
-                    Console.Write("Установите пароль: ");
+                case CommandSetPassword:
+
+                    Console.Write("Установить пароль: ");
                     setPassword = Console.ReadLine();
                     Console.Clear();
                     break;
 
-                case 4:
-                    Console.WriteLine("Введите пароль: ");
-                    password = Console.ReadLine();
+                case CommandDisplayName:
 
-                    if (password == setPassword)
+                    Console.Write("Введите пароль для смены имени: ");
+
+                    for (int i = 0; i < triesCount; i++)
                     {
-                        Console.WriteLine("Имя пользователя: " + setName);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Пароль не верный!");
+                        password = Console.ReadLine();
+
+                        if (password == setPassword)
+                        {
+                            Console.Write("Введите новое имя: ");
+                            setName = Console.ReadLine();
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Вы ввели не правильный пароль.\nУ Вас осталось" + (triesCount - i - 1) + " попыток.");
+                        }
                     }
                     break;
 
-                case 5:
-                    Console.WriteLine("Вы вышли из меню.");
-                    esc = false;
-                    break;  
+                case CommandChangeTextBackground:
+
+                    Console.WriteLine("Выберите цвет, чтобы выделить текст: ");
+                    Console.WriteLine($"{commandSetColorTextBackgroundRed} - Выделить текст красным;");
+                    Console.WriteLine($"{commandSetColorTextBackgroundYellow} - Выделить текст желтым;");
+                    Console.WriteLine($"{commandSetColorTextBackgroundGreen} - Выделить текст зеленым.");
+                    setColorBackgroundText = Convert.ToInt32(Console.ReadLine());
+
+                    if (setColorBackgroundText == 1)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        
+                    }
+                    else if (setColorBackgroundText == 2)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Yellow;
+                        
+                    }
+                    else if (setColorBackgroundText == 3)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Green;
+                        
+                    }
+                    break;
+
+                case CommandExit:
+                    break;
+
+                default:
+                    Console.WriteLine("Не известная команда!");
+                    break;
             }
+
+            Console.ReadKey();
         }
-        Console.ReadKey();
     }
-}   
+}
