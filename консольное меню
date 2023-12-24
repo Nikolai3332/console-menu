@@ -50,15 +50,15 @@ internal class Program
                     Console.WriteLine($"{commandSetColorTextGreen} - Установить зеленый цвет текста.");
                     setColorText = Convert.ToInt32(Console.ReadLine());
 
-                    if (setColorText == 1)
+                    if (setColorText == commandSetColorTextRed)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                     }
-                    else if (setColorText == 2)
+                    else if (setColorText == commandSetColorTextYellow)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                     }
-                    else if (setColorText == 3)
+                    else if (setColorText == commandSetColorTextGreen)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                     }
@@ -97,17 +97,17 @@ internal class Program
                     Console.WriteLine($"{commandSetColorTextBackgroundGreen} - Выделить текст зеленым.");
                     setColorBackgroundText = Convert.ToInt32(Console.ReadLine());
 
-                    if (setColorBackgroundText == 1)
+                    if (setColorBackgroundText == commandSetColorTextBackgroundRed)
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
                     }
-                    else if (setColorBackgroundText == 2)
+                    else if (setColorBackgroundText == commandSetColorTextBackgroundYellow)
                     {
                         Console.BackgroundColor = ConsoleColor.Yellow;
                     }
-                    else if (setColorBackgroundText == 3)
+                    else if (setColorBackgroundText == commandSetColorTextBackgroundGreen)
                     {
-                        Console.BackgroundColor = ConsoleColor.Green; 
+                        Console.BackgroundColor = ConsoleColor.Green;
                     }
                     break;
 
