@@ -12,23 +12,21 @@ internal class Program
         int commandSetColorTextRed = 1;
         int commandSetColorTextYellow = 2;
         int commandSetColorTextGreen = 3;
-
         int commandSetColorTextBackgroundRed = 1;
         int commandSetColorTextBackgroundYellow = 2;
         int commandSetColorTextBackgroundGreen = 3;
-
-        string userInput = "";
         int setColorText;
         int setColorBackgroundText;
         int triesCount = 3;
-
+        string userInput = "";
         string password;
         string setName = "";
         string setPassword = "";
+        bool isCommandExit = true;
 
         Console.WriteLine("Добро пожаловать в меню!\nВыберите нужную команду: ");
 
-        while (userInput != CommandExit)
+        while (isCommandExit)
         {
             Console.WriteLine($"{CommandSetName} - Установить имя;");
             Console.WriteLine($"{CommandSetColorText} - Выбрать цвет текста;");
@@ -41,13 +39,11 @@ internal class Program
             switch (userInput)
             {
                 case CommandSetName:
-
                     Console.Write("Установите имя: ");
                     setName = Console.ReadLine();
                     break;
 
                 case CommandSetColorText:
-
                     Console.WriteLine("Выберите цвет текста: ");
                     Console.WriteLine($"{commandSetColorTextRed} - Установить красный цвет текста;");
                     Console.WriteLine($"{commandSetColorTextYellow} - Установить желтый цвет текста;");
@@ -57,29 +53,24 @@ internal class Program
                     if (setColorText == 1)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        
                     }
                     else if (setColorText == 2)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        
                     }
                     else if (setColorText == 3)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
-                        
                     }
                     break;
 
                 case CommandSetPassword:
-
                     Console.Write("Установить пароль: ");
                     setPassword = Console.ReadLine();
                     Console.Clear();
                     break;
 
                 case CommandDisplayName:
-
                     Console.Write("Введите пароль для смены имени: ");
 
                     for (int i = 0; i < triesCount; i++)
@@ -100,7 +91,6 @@ internal class Program
                     break;
 
                 case CommandChangeTextBackground:
-
                     Console.WriteLine("Выберите цвет, чтобы выделить текст: ");
                     Console.WriteLine($"{commandSetColorTextBackgroundRed} - Выделить текст красным;");
                     Console.WriteLine($"{commandSetColorTextBackgroundYellow} - Выделить текст желтым;");
@@ -110,21 +100,19 @@ internal class Program
                     if (setColorBackgroundText == 1)
                     {
                         Console.BackgroundColor = ConsoleColor.Red;
-                        
                     }
                     else if (setColorBackgroundText == 2)
                     {
                         Console.BackgroundColor = ConsoleColor.Yellow;
-                        
                     }
                     else if (setColorBackgroundText == 3)
                     {
-                        Console.BackgroundColor = ConsoleColor.Green;
-                        
+                        Console.BackgroundColor = ConsoleColor.Green; 
                     }
                     break;
 
                 case CommandExit:
+                    isCommandExit = false;
                     break;
 
                 default:
